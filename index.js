@@ -10,12 +10,9 @@ const socketio = require('socket.io')(http)
 
 socketio.on("connection", (userSocket) => {
     userSocket.on("send_message", (data) => {
+        console.log(data)
         userSocket.broadcast.emit("receive_message", data)
     })
-    userSocket.on("event_name", (data) => {
-        console.log(data)
-    })
-    userSocket.broadcast.emit("event_name", data)
 })
 
 http.listen(process.env.PORT)
